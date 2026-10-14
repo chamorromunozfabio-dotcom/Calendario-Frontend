@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /panel
+Disallow: /calendario
+Disallow: /diario
+Disallow: /analisis
+Disallow: /ajustes
+Disallow: /pareja
+Disallow: /mensajes

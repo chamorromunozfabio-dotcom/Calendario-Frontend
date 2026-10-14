@@ -1,0 +1,105 @@
+/* CCycle — variables base + 6 temas + modo claro/oscuro */
+:root {
+  --rosa: #e8b4c8;
+  --lavanda: #c3b2e0;
+  --crema: #fdf8f4;
+  --malva: #b784a7;
+  --ciruela: #8e5a7d;
+  --texto: #3a2a35;
+  --texto-suave: #6b5563;
+  --fondo: var(--crema);
+  --tarjeta: #ffffff;
+  --borde: #ecd9e2;
+  --acento: var(--ciruela);
+  --acento-contraste: #ffffff;
+  --radio: 14px;
+  --sombra: 0 2px 12px rgba(142, 90, 125, 0.12);
+  --foco: 0 0 0 3px rgba(142, 90, 125, 0.35);
+}
+
+[data-theme='floral'] { --rosa: #f2a7bb; --lavanda: #d5b8f0; --crema: #fff7f3; --malva: #c08497; --ciruela: #9d4e6c; --acento: #9d4e6c; --fondo: #fff7f3; }
+[data-theme='minimalista'] { --rosa: #d9d9d9; --lavanda: #cfcfcf; --crema: #ffffff; --malva: #8a8a8a; --ciruela: #333333; --acento: #333333; --fondo: #ffffff; --borde: #e5e5e5; }
+[data-theme='nocturno'] { --rosa: #6d597a; --lavanda: #355070; --crema: #1a1620; --malva: #88587a; --ciruela: #e0aaff; --acento: #e0aaff; --fondo: #1a1620; --tarjeta: #241d2b; --borde: #3d3245; --texto: #f2e9f0; --texto-suave: #c4b2c4; --acento-contraste: #1a1620; }
+[data-theme='pastel'] { --rosa: #ffc8dd; --lavanda: #cdb4db; --crema: #fffefd; --malva: #bde0fe; --ciruela: #7f6aa8; --acento: #7f6aa8; --fondo: #fff9fb; }
+[data-theme='natural'] { --rosa: #d8b9a3; --lavanda: #b7c9a8; --crema: #faf6ef; --malva: #8a9b7c; --ciruela: #4a5d3a; --acento: #4a5d3a; --fondo: #faf6ef; }
+
+[data-mode='oscuro'] {
+  --fondo: #1c1620;
+  --tarjeta: #261d2b;
+  --borde: #44364c;
+  --texto: #f4ecf2;
+  --texto-suave: #c9b6c6;
+  --acento-contraste: #1c1620;
+  --sombra: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--fondo);
+  color: var(--texto);
+  line-height: 1.6;
+}
+
+.skip-link { position: absolute; left: -999px; top: 0; background: var(--acento); color: var(--acento-contraste); padding: 0.6rem 1rem; z-index: 100; border-radius: 0 0 8px 0; }
+.skip-link:focus { left: 0; }
+
+a { color: var(--acento); }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: none;
+  box-shadow: var(--foco);
+}
+
+.app-shell { min-height: 100vh; display: flex; flex-direction: column; }
+.site-header { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--tarjeta) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--borde); }
+.header-inner, .page { width: min(1100px, 100% - 2rem); margin-inline: auto; }
+.header-inner { display: flex; align-items: center; gap: 1rem; padding: 0.7rem 0; }
+.logo { font-weight: 800; font-size: 1.4rem; text-decoration: none; color: var(--texto); }
+.logo span { color: var(--acento); }
+.main-nav { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-left: auto; }
+.main-nav a { text-decoration: none; padding: 0.55rem 0.8rem; border-radius: 999px; color: var(--texto); min-height: 44px; display: inline-flex; align-items: center; }
+.main-nav a.active, .main-nav a:hover { background: var(--rosa); color: #3a2a35; }
+.page { padding: 1.2rem 0 4rem; }
+.site-footer { border-top: 1px solid var(--borde); padding: 1.2rem 0; margin-top: auto; background: var(--tarjeta); }
+.site-footer .page { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+
+.grid { display: grid; gap: 1rem; }
+.grid-2 { grid-template-columns: 1fr; }
+.grid-3 { grid-template-columns: 1fr; }
+@media (min-width: 720px) { .grid-2 { grid-template-columns: 1fr 1fr; } .grid-3 { grid-template-columns: repeat(3, 1fr); } }
+
+.card { background: var(--tarjeta); border: 1px solid var(--borde); border-radius: var(--radio); box-shadow: var(--sombra); padding: 1.1rem; }
+.card h2, .card h3 { margin-top: 0; }
+.badge { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 999px; font-size: 0.8rem; background: var(--lavanda); color: #2e2230; }
+.btn { border: 1px solid var(--acento); background: var(--acento); color: var(--acento-contraste); border-radius: 999px; padding: 0.65rem 1.2rem; font-size: 1rem; cursor: pointer; min-height: 44px; transition: transform 0.15s ease, opacity 0.15s ease; }
+.btn:hover { transform: translateY(-1px); }
+.btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+.btn-secundario { background: transparent; color: var(--acento); }
+.input, .select, .textarea { width: 100%; padding: 0.65rem 0.8rem; border-radius: 10px; border: 1px solid var(--borde); background: var(--tarjeta); color: var(--texto); font-size: 1rem; min-height: 44px; }
+.textarea { min-height: 90px; resize: vertical; }
+label { font-weight: 600; display: block; margin: 0.6rem 0 0.25rem; }
+.form-error { color: #a4262c; background: #fdecea; border: 1px solid #f5c2c0; padding: 0.6rem 0.8rem; border-radius: 10px; }
+.form-ok { color: #1d5c2e; background: #e6f4ea; border: 1px solid #a8d5b5; padding: 0.6rem 0.8rem; border-radius: 10px; }
+.muted { color: var(--texto-suave); }
+.estado-vacio { border: 1px dashed var(--borde); border-radius: var(--radio); padding: 1.2rem; text-align: center; }
+
+/* Calendario */
+.cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.cal-dow { text-align: center; font-weight: 700; font-size: 0.85rem; color: var(--texto-suave); padding: 0.3rem 0; }
+.cal-day { min-height: 52px; border: 1px solid var(--borde); border-radius: 10px; background: var(--tarjeta); padding: 0.2rem 0.35rem; font-size: 0.9rem; cursor: pointer; text-align: left; color: var(--texto); }
+.cal-day.fuera { opacity: 0.45; }
+.cal-day.seleccionado { outline: 2px solid var(--acento); }
+.cal-day .simb { font-size: 0.75rem; letter-spacing: 1px; }
+.k-period_registered { background: #f7c9d9; }
+.k-period_estimated { background: repeating-linear-gradient(45deg, transparent, transparent 6px, rgba(142,90,125,.18) 6px, rgba(142,90,125,.18) 8px); }
+.k-fertile_estimated { border-color: var(--malva); border-width: 2px; }
+.k-ovulation_estimated { background: var(--lavanda); font-weight: 700; }
+
+.mobile-nav { display: flex; gap: 0.3rem; overflow-x: auto; padding: 0.6rem 0; }
+@media (min-width: 900px) { .mobile-nav { display: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
